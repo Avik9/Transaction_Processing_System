@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>jsTPS Tester</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/jsTPS_styling.css" />
+
+    <script src="./src/jsTPS_Transaction.js"></script>
+
+    <script src="./test/demo/Num.js"></script>
+    <script src="./test/demo/OrMask_Transaction.js"></script>
+    <script src="./test/demo/AndMask_Transaction.js"></script>
+    <script src="./test/demo/AddToNum_Transaction.js"></script>
+
+    <!-- FOR TESTING OUR jsTPS PROGRAM -->
+
+    <script src="./test/jsunit_test_beds/jsTPS_Unit_Tests.js"></script>
+    <script src="./test/demo/jsTPS_Tester.js"></script>
+
+
+    <script>
+        window.onload = function () {
+            // unitTesting = new jsTPS_Unit_Tests();
+            // unitTesting.run();
+            tester = new jsTPS_Tester();
+            tester.menu();
+        }
+    </script>
+</head>
+
+<body>
+    <div id="page">
+        <div id="page_title"><strong>jsTPS Tester Page</strong></div>
+        <div class="column">
+            <div id="left_half">
+                <div id="input"></div>
+            </div>
+            <div id="right_half">
+                <input id="output" type="text"></input>
+                <button id="input_button">Enter</button>
+                <div id="display"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

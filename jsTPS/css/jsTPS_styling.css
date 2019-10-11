@@ -1,0 +1,35 @@
+#page_title {
+    font-size: 20pt;
+    text-align: center
+}
+
+#left_half, #right_half {
+    position: absolute;
+    border-color: grey;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    margin: 10px;
+    height: fit-content;
+    width: 675px;
+    padding: 10px;
+}
+
+#right_half, #input {
+    left: 710px;
+    bottom: 399px;
+}
+
+#display {
+    position: absolute;
+    border-color: grey;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    margin: 10px;
+    height: fit-content;
+    width: 675px;
+    padding: 10px;
+    left: -11px;
+    
+}
