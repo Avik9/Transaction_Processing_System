@@ -21,8 +21,6 @@ class jsTPS_Tester {
         document.getElementById("input_button").addEventListener("click", () => this.calculate());
         this.printer.innerHTML += "jsTPS_Tester: <br><br>";
         document.getElementById("output").value = "";
-
-        // this.run();
     }
 
     /**
