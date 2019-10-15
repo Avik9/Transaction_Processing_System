@@ -26,8 +26,8 @@ class jsTPS_Tester {
 
     start(){
         document.getElementById("add_button").addEventListener("click", () => this.addToNumTransaction());
-        document.getElementById("undo_button").addEventListener("click", () => this.tps.undoTransaction());
-        document.getElementById("redo_button").addEventListener("click", () => this.tps.doTransaction());
+        document.getElementById("undo_button").addEventListener("click", () => this.undoTransaction());
+        document.getElementById("redo_button").addEventListener("click", () => this.redoTransaction());
         document.getElementById("clear_button").addEventListener("click", () => this.tps.clearAllTransactions());
         document.getElementById("reset_button").addEventListener("click", () => this.reset());
     }
@@ -41,11 +41,21 @@ class jsTPS_Tester {
     }
    
     addToNumTransaction = () => {
-        entry = document.getElementById("output").value;
+        let entry = document.getElementById("output").value;
         let amountToAdd = parseInt(entry);
         let transaction = new AddToNum_Transaction(this.num, amountToAdd);
         this.tps.addTransaction(transaction);
 
+        this.printer.innerHTML = "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum();
+    }
+
+    undoTransaction = () => {
+        this.tps.undoTransaction();
+        this.printer.innerHTML = "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum();
+    }
+
+    redoTransaction = () => {
+        this.tps.doTransaction();
         this.printer.innerHTML = "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum();
     }
 }
