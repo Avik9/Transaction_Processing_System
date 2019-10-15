@@ -17,7 +17,7 @@
 
 #right_half, #input {
     left: 710px;
-    bottom: 399px;
+    /* bottom: 399px; */
 }
 
 #display {
@@ -32,4 +32,9 @@
     padding: 10px;
     left: -11px;
     
+}
+
+button {
+    margin: 1em;
+    font-size: 8pt;
 }

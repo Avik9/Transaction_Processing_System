@@ -1,3 +1,5 @@
+// import AddToNum_Transaction from './AddToNum_Transaction.js'
+
 /**
  * This driver demonstrates simple usage of the jTPS API.
  * 
@@ -18,92 +20,32 @@ class jsTPS_Tester {
         this.keepGoing = true;
 
         // THESE ARE TO HELP WITH I/O
-        document.getElementById("input_button").addEventListener("click", () => this.calculate());
-        this.printer.innerHTML += "jsTPS_Tester: <br><br>";
+        this.printer.innerHTML += "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum();
         document.getElementById("output").value = "";
     }
 
-    /**
-     * This runs our demo program. Note that it presents a 
-     * menu, retrieves the input, and executes the selected
-     * behavior.
-     * 
-     * @param args Not used in this demo.
-     */
-    menu() {
-        document.getElementById("input_button").addEventListener("click", () => this.calculate());
-
-        // DISPLAY THE CURRENT TPS
-        this.printer.innerHTML += "CURRENT jsTPS: <br>";
-        this.printer.innerHTML += this.tps.toString();
-
-        // DISPLAY NUM
-        this.printer.innerHTML += "<br><br> Num is " + this.num.getNum() + "<br><br>";
-
-        // DISPLAY THE MENU
-        this.printer.innerHTML += "ENTER A SELECTION<br>" +
-            "1) Add a Transaction<br>" +
-            "2) Undo a Transaction<br>" +
-            "3) Redo a Transaction<br>" +
-            "4) Clear All Transactions<br>" +
-            "5) Reset Num and Transactions<br>" +
-            "-<br><br>";
+    start(){
+        document.getElementById("add_button").addEventListener("click", () => this.addToNumTransaction());
+        document.getElementById("undo_button").addEventListener("click", () => this.tps.undoTransaction());
+        document.getElementById("redo_button").addEventListener("click", () => this.tps.doTransaction());
+        document.getElementById("clear_button").addEventListener("click", () => this.tps.clearAllTransactions());
+        document.getElementById("reset_button").addEventListener("click", () => this.reset());
     }
 
-    addToNumTransaction() {
+    reset = () => {
+        this.tps.clearAllTransactions();
+
+        this.num.setNum(0);
+
+        this.printer.innerHTML = "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum();
+    }
+   
+    addToNumTransaction = () => {
         entry = document.getElementById("output").value;
-        let amountToAdd = parseInt("5");
-        let transaction = new AddToNum_Transaction(this.num, 5);
+        let amountToAdd = parseInt(entry);
+        let transaction = new AddToNum_Transaction(this.num, amountToAdd);
         this.tps.addTransaction(transaction);
 
-        this.menu();
-    }
-
-    calculate() 
-    {
-        // GET THE USER SELECTION
-        let entry = document.getElementById("output").value;
-
-        // ADD AND EXECUTE A TRANSACTION
-        if (entry === "1") {
-            this.printer.innerHTML += "<br>Enter an amount to add: ";
-            document.getElementById("output").value = "";
-            document.getElementById("input_button").addEventListener("click", () => this.addToNumTransaction());
-            
-        }
-        // UNDO A TRANSACTION
-        else if (entry === "2") {
-            this.tps.undoTransaction();
-            document.getElementById("output").value = "";
-            this.menu();
-        }
-        // REDO A TRANSACTION
-        else if (entry === "3") {
-            this.tps.doTransaction();
-            document.getElementById("output").value = "";
-            this.menu();
-        }
-        // CLEAR ALL TRANSACTIONS
-        else if (entry === "4") {
-            this.tps.clearAllTransactions();
-            document.getElementById("output").value = "";
-            this.menu();
-        }
-        // CLEAR ALL TRANSACTIONS AND RESET NUM TO 0
-        else if (entry === "5") {
-            this.tps.clearAllTransactions();
-            this.num.setNum(0);
-            document.getElementById("output").value = "";
-            this.menu();
-        }
-        // QUIT
-        else if (entry.startsWith("Q")) {
-            this.printer.innerHTML += "GOODBYE";
-        }
-        else{
-            this.printer.innerHTML += "Please choose another option";
-            document.getElementById("output").value = "";
-            this.menu();
-        }
+        this.printer.innerHTML = "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum();
     }
 }
