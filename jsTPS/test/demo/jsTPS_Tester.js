@@ -1,5 +1,3 @@
-// import AddToNum_Transaction from './AddToNum_Transaction.js'
-
 /**
  * This driver demonstrates simple usage of the jTPS API.
  * 
