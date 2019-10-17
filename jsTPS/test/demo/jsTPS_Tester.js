@@ -18,7 +18,7 @@ class jsTPS_Tester {
         this.keepGoing = true;
 
         // THESE ARE TO HELP WITH I/O
-        this.printer.innerHTML += "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum();
+        this.printCurrentStatus();
         document.getElementById("output").value = "";
     }
 
@@ -26,7 +26,7 @@ class jsTPS_Tester {
         document.getElementById("add_button").addEventListener("click", () => this.addToNumTransaction());
         document.getElementById("undo_button").addEventListener("click", () => this.undoTransaction());
         document.getElementById("redo_button").addEventListener("click", () => this.redoTransaction());
-        document.getElementById("clear_button").addEventListener("click", () => this.tps.clearAllTransactions());
+        document.getElementById("clear_button").addEventListener("click", () => this.clearTransactions());
         document.getElementById("reset_button").addEventListener("click", () => this.reset());
     }
 
@@ -35,25 +35,38 @@ class jsTPS_Tester {
 
         this.num.setNum(0);
 
-        this.printer.innerHTML = "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum();
+        this.printCurrentStatus();
     }
    
     addToNumTransaction = () => {
         let entry = document.getElementById("output").value;
+        document.getElementById("output").value = "";
         let amountToAdd = parseInt(entry);
         let transaction = new AddToNum_Transaction(this.num, amountToAdd);
         this.tps.addTransaction(transaction);
 
-        this.printer.innerHTML = "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum();
+        this.printCurrentStatus();
     }
 
     undoTransaction = () => {
         this.tps.undoTransaction();
-        this.printer.innerHTML = "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum();
+        
+        this.printCurrentStatus();
     }
 
     redoTransaction = () => {
         this.tps.doTransaction();
-        this.printer.innerHTML = "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum();
+        
+        this.printCurrentStatus();
+    }
+
+    clearTransactions = () => {
+        this.tps.clearAllTransactions();
+        
+        this.printCurrentStatus();
+    }
+
+    printCurrentStatus = () => {
+        this.printer.innerHTML = "jsTPS_Tester: <br><br> Current Num: " + this.num.getNum() + "<br><br> Current Stack:<br><br>" + this.tps.toString();
     }
 }
