@@ -1,4 +1,3 @@
-'strict mode'
 /**
  * jsTPS.js
  * 

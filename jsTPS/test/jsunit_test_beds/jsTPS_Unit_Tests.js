@@ -14,7 +14,8 @@ class jsTPS_Unit_Tests {
         this.printer = document.getElementById('input');
     }
 
-    run() {
+    run() 
+    {
         this.printer.innerHTML = "jsTPS Unit Testing results:<br><br>";
         this.testAdd();
         this.testAndMask();
@@ -714,6 +715,7 @@ class jsTPS_Unit_Tests {
 
     /**
      * Checks equality between two values
+     * 
      * @param {Integer/Boolean} value1 
      * @param {Integer/Boolean} value2 
      */
